@@ -195,7 +195,7 @@ class ScanResultTile extends StatelessWidget {
     });
     return res.join(', ');
   }*/
-a
+
 
   @override
   Widget build(BuildContext context) {
