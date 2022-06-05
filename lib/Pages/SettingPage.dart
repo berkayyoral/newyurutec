@@ -90,7 +90,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Destek Kuvveti"),
-                        Obx(()=>Steppers(controller:destek1,scale:1,text: controllerdestek1.countsdestek1.toString(),onCustomPlusPressed: () { controllerdestek1.incrementdestek1(); }, onCustomMinusPressed: () { controllerdestek1.decrementdestek2(); },),
+                        Obx(()=>Steppers(controller:destek1,scale:1,text: controllerdestek1.countsdestek1.toString(),onCustomPlusPressed: () { controllerdestek1.incrementdestek1(); }, onCustomMinusPressed: () { controllerdestek1.decrementdestek1(); },),
                         ),],
                     ),
                     Column(
