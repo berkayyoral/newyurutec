@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "649900422765",
+    "project_id": "qrtech-c347d",
+    "storage_bucket": "qrtech-c347d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649900422765:android:48ac0ca721c2ec0853f164",
+        "android_client_info": {
+          "package_name": "com.zeplin.yurutecrobot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649900422765-o7u27cgkvi9pjkj8h5ma26cv92tik4m0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUxll5m-XkrWWmqS9sk0c4Zjgb6F-8LcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649900422765-o7u27cgkvi9pjkj8h5ma26cv92tik4m0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

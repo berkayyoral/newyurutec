@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:yurutecrobot/Controller/getController.dart';
@@ -8,66 +6,101 @@ import 'package:yurutecrobot/Pages/SettingPage.dart';
 
 import '../../Export.dart';
 
+class DeviceScreen extends StatefulWidget {
+  DeviceScreen({Key? key, required this.device}) : super(key: key);
 
-class DeviceScreen extends StatelessWidget {
-  DeviceScreen(
-      {Key? key, required this.device})
-      : super(key: key);
-
-
-  getController abc = Get.put(getController());
   final BluetoothDevice device;
-  List<int> _writeFrame() {
-    //  final a = double.parse(_val.text).toInt();
-    //final kc = int.parse(_val.text);
+
+  @override
+  State<DeviceScreen> createState() => _DeviceScreenState();
+}
+
+class _DeviceScreenState extends State<DeviceScreen> {
+  getController abc = Get.put(getController());
+  var a = 0;
+
+  List denemeRead = [];
+
+  var crc = 0;
+
+  void crcHesaplama() {}
+
+  List<int> frame1() {
     return [
-      81,
+      81, //eşleşme byte
       84,
       82,
-      //kc,
-
-      12,
-    ];
-  }
-
-  List<int> frameOrnek(){
-    return [
-      81,
-      84,
-      82,
-      0,
+      0, //durum byte
+      1, //kalibrasyon byte
+      abc.countskalca_maks,
       abc.countsdiz_maks,
       abc.countsdiz_min,
       abc.countsdestek1,
       abc.countsdestek2,
-      abc.countskalca_maks,
       abc.countskalca_min,
-      /*diz_maks.count.toInt(),
-    diz_min.count.toInt(),
-    destek1.count.toInt(),
-    destek2.count.toInt(),*/
+      abc.countshiz,
+      //abc.hiz2,
+      //abc.hiz3,
     ];
   }
 
+  List<int> frame2() {
+    return [
+      81,
+      84,
+      82,
+      1,
+      abc.countshiz,
+      // abc.hiz2,
+      // abc.hiz3
+    ];
+  }
 
-
-  void writeChar() async {
-    List<BluetoothService> services = await device.discoverServices();
+  void write1() async {
+    List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
       service.characteristics.forEach((character) {
-        if (character.uuid.toString() == '00006e41-0000-1000-8000-00805f9b34fb') {
+        if (character.uuid.toString() ==
+            '00006e41-0000-1000-8000-00805f9b34fb') {
           //buraya bi bekleme koymalıyız sayfa açılır açılmaz yollanıyor (ya da bekletmeyiz sayfaya girdiği gibi yollar),
-          character.write(frameOrnek());
+          character.write(frame1());
+        }
+      });
+    });
+  }
+
+  void write2() async {
+    List<BluetoothService> services = await widget.device.discoverServices();
+    services.forEach((service) {
+      service.characteristics.forEach((character) {
+        if (character.uuid.toString() ==
+            '00006e41-0000-1000-8000-00805f9b34fb') {
+          //buraya bi bekleme koymalıyız sayfa açılır açılmaz yollanıyor (ya da bekletmeyiz sayfaya girdiği gibi yollar),
+          character.write(frame2());
+        }
+      });
+    });
+  }
+
+   void read1() async {
+    List<BluetoothService> services = await widget.device.discoverServices();
+    services.forEach((service) {
+      service.characteristics.forEach((character) {
+        if (character.uuid.toString() ==
+            '00006e41-0000-1000-8000-00805f9b34fb') {
+          character.read().then((value) {
+            print('value is $value');
+            denemeRead = value;
+          });
         }
       });
     });
   }
 
   //read
-
-
   @override
   Widget build(BuildContext context) {
+    read1();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -75,18 +108,18 @@ class DeviceScreen extends StatelessWidget {
         backgroundColor: Colors.teal,
         actions: <Widget>[
           StreamBuilder<BluetoothDeviceState>(
-            stream: device.state,
+            stream: widget.device.state,
             initialData: BluetoothDeviceState.connecting,
             builder: (c, snapshot) {
               VoidCallback? onPressed;
               String text;
               switch (snapshot.data) {
                 case BluetoothDeviceState.connected:
-                  onPressed = () => device.disconnect();
+                  onPressed = () => widget.device.disconnect();
                   text = 'DISCONNECT';
                   break;
                 case BluetoothDeviceState.disconnected:
-                  onPressed = () => device.connect();
+                  onPressed = () => widget.device.connect();
                   text = 'CONNECT';
                   break;
                 default:
@@ -121,7 +154,7 @@ class DeviceScreen extends StatelessWidget {
               },
             ),*/
             StreamBuilder<BluetoothDeviceState>(
-              stream: device.state,
+              stream: widget.device.state,
               initialData: BluetoothDeviceState.connecting,
               builder: (c, snapshot) => ListTile(
                 leading: (snapshot.data == BluetoothDeviceState.connected)
@@ -129,16 +162,16 @@ class DeviceScreen extends StatelessWidget {
                     : const Icon(Icons.bluetooth_disabled),
                 title: Text(
                     'Device is ${snapshot.data.toString().split('.')[1]}.'),
-                subtitle: Text('${device.id}'),
+                subtitle: Text('${widget.device.id}'),
                 trailing: StreamBuilder<bool>(
-                  stream: device.isDiscoveringServices,
+                  stream: widget.device.isDiscoveringServices,
                   initialData: false,
                   builder: (c, snapshot) => IndexedStack(
                     index: snapshot.data! ? 1 : 0,
                     children: <Widget>[
                       IconButton(
                         icon: const Icon(Icons.refresh),
-                        onPressed: () => device.discoverServices(),
+                        onPressed: () => widget.device.discoverServices(),
                       ),
                       const IconButton(
                         icon: SizedBox(
@@ -161,10 +194,31 @@ class DeviceScreen extends StatelessWidget {
               );
             }),*/
             IconButton(
-                onPressed: (){
-                 writeChar();},
+                onPressed: () {
+                  if (a == 0) {
+                    write1();
+                    setState(() {
+                      a += 1;
+                    });
+                    print(a);
+                  } else {
+                    write2();
+                    setState(() {
+                      a = 0;
+                      print(a);
+                    });
+                  }
+                },
                 icon: Icon(Icons.upload)),
-           // Text('${writeChar()}'),
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    read1();
+                  });
+                },
+                icon: Icon(Icons.download)),
+            Text(denemeRead == null ? 'olmadı' : denemeRead.toString()
+            ),
           ],
         ),
       ),

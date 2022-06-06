@@ -1,12 +1,19 @@
 import 'package:get/get.dart';
 
 class getController extends GetxController{
+  //pozisyon
   final kalca_maks = 0.obs;
   final kalca_min = 0.obs;
   final diz_min = 0.obs;
   final diz_max = 0.obs;
   final destek1 = 0.obs;
   final destek2 = 0.obs;
+
+  //hiz
+  final hiz = 0.obs;
+  int get countshiz => hiz.value;
+  void incrementhiz() => hiz.value++;
+  void decrementhiz() => hiz.value--;
 
   int get countskalca_maks => kalca_maks.value;
   void incrementkalca_maks() => kalca_maks.value++;

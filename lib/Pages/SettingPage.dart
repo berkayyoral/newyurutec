@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 import 'package:yurutecrobot/Controller/getController.dart';
@@ -30,20 +29,31 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
   getController destek1 = getController();
   getController destek2 = getController();
 
-
-  String battery_per="10";
+  String battery_per = "10";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true,
-          leading: IconButton(icon: Icon(Icons.logout), onPressed: () { },),
-          title: Text("QTR TECH"),actions: [
+      appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {},
+          ),
+          title: Text("QTR TECH"),
+          actions: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(0,0,10,0),
-              child: Stack(alignment: Alignment.center,children: [
-                Image.asset("assets/images/battery-level.png",scale: 1.5,color: Colors.white,),
-                Text(battery_per)
-              ],),
+              padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/battery-level.png",
+                    scale: 1.5,
+                    color: Colors.white,
+                  ),
+                  Text(battery_per)
+                ],
+              ),
             )
           ],
           backgroundColor: Colors.teal),
@@ -52,80 +62,172 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 20,),
-              Text("Açı Ayarlama",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22,color:  Colors.teal),),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Açı Ayarlama",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
+                    color: Colors.teal),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Column(
-                  children: [
-                    Text("Kalça Maksimum"),
-                    Obx(()=>Steppers (controller: kalca_maks,text:controllerkalca_maks.countskalca_maks.toString(),onCustomPlusPressed: (){ controllerkalca_maks.incrementkalca_maks();}, onCustomMinusPressed: () { controllerkalca_maks.decrementkalca_maks();},),
-                    ),SizedBox(height: 20,),
-                    Text("Diz Maksimum"),
-                    Obx(()=>Steppers (controller: diz_maks,text: controllerdiz_max.countsdiz_maks.toString(), onCustomPlusPressed: () { controllerdiz_max.incremendiz_maks(); },onCustomMinusPressed: () { controllerdiz_max.decrementdiz_maks(); },),
-                    ),],
-                ),
+                children: [
+                  Column(
+                    children: [
+                      Text("Kalça Maksimum"),
+                      Obx(
+                        () => Steppers(
+                          controller: kalca_maks,
+                          text:
+                              controllerkalca_maks.countskalca_maks.toString(),
+                          onCustomPlusPressed: () {
+                            controllerkalca_maks.incrementkalca_maks();
+                          },
+                          onCustomMinusPressed: () {
+                            controllerkalca_maks.decrementkalca_maks();
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text("Diz Maksimum"),
+                      Obx(
+                        () => Steppers(
+                          controller: diz_maks,
+                          text: controllerdiz_max.countsdiz_maks.toString(),
+                          onCustomPlusPressed: () {
+                            controllerdiz_max.incremendiz_maks();
+                          },
+                          onCustomMinusPressed: () {
+                            controllerdiz_max.decrementdiz_maks();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   Image.asset(
                     "assets/images/walk.png",
-                    width:MediaQuery.of(context).size.width *0.42 , color: Colors.teal,
-
-                  ),Column(
+                    width: MediaQuery.of(context).size.width * 0.42,
+                    color: Colors.teal,
+                  ),
+                  Column(
                     children: [
                       Text("Kalça Minimum"),
-                      Obx(()=>Steppers (controller: kalca_min,text: controllerkalca_min.countskalca_min.toString(),onCustomPlusPressed: () { controllerkalca_min.incrementkalca_min(); }, onCustomMinusPressed: () { controllerkalca_min.decrementkalca_min(); },),
-                        ), SizedBox(height: 20,),
+                      Obx(
+                        () => Steppers(
+                          controller: kalca_min,
+                          text: controllerkalca_min.countskalca_min.toString(),
+                          onCustomPlusPressed: () {
+                            controllerkalca_min.incrementkalca_min();
+                          },
+                          onCustomMinusPressed: () {
+                            controllerkalca_min.decrementkalca_min();
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Text("Diz Minimum"),
-                      Obx(()=> Steppers (controller: diz_min,text: controllerdiz_min.countsdiz_min.toString(), onCustomPlusPressed: () { controllerdiz_min.incrementdiz_min(); }, onCustomMinusPressed: () { controllerdiz_min.decrementdiz_min(); },),
-                      ), ],
+                      Obx(
+                        () => Steppers(
+                          controller: diz_min,
+                          text: controllerdiz_min.countsdiz_min.toString(),
+                          onCustomPlusPressed: () {
+                            controllerdiz_min.incrementdiz_min();
+                          },
+                          onCustomMinusPressed: () {
+                            controllerdiz_min.decrementdiz_min();
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Destek Kuvveti"),
-                        Obx(()=>Steppers(controller:destek1,scale:1,text: controllerdestek1.countsdestek1.toString(),onCustomPlusPressed: () { controllerdestek1.incrementdestek1(); }, onCustomMinusPressed: () { controllerdestek1.decrementdestek1(); },),
-                        ),],
+                        Obx(
+                          () => Steppers(
+                            controller: destek1,
+                            scale: 1,
+                            text: controllerdestek1.countsdestek1.toString(),
+                            onCustomPlusPressed: () {
+                              controllerdestek1.incrementdestek1();
+                            },
+                            onCustomMinusPressed: () {
+                              controllerdestek1.decrementdestek1();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Destek Kuvveti"),
-                        Obx(()=>Steppers(controller: destek2,scale:1,text: controllerdestek2.countsdestek2.toString(), onCustomPlusPressed: () { controllerdestek2.incrementdestek2(); }, onCustomMinusPressed: () { controllerdestek2.decrementdestek2(); },),
-                        ),],
+                        Obx(
+                          () => Steppers(
+                            controller: destek2,
+                            scale: 1,
+                            text: controllerdestek2.countsdestek2.toString(),
+                            onCustomPlusPressed: () {
+                              controllerdestek2.incrementdestek2();
+                            },
+                            onCustomMinusPressed: () {
+                              controllerdestek2.decrementdestek2();
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ],),
+                  ],
+                ),
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  getButton("Kaydet",(){}),
-                  SizedBox(width: 20,),
-                  getButton("Sağ Bacak",(){}),
-
+                  getButton("Kaydet", () {}),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  getButton("Sağ Bacak", () {}),
                 ],
               ),
-              Row( mainAxisAlignment: MainAxisAlignment.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  getButton("Sol Bacak",(){}),
-                  SizedBox(width: 20,),
-                  getButton("Ayarları Sıfırla",(){}),
-
-
+                  getButton("Sol Bacak", () {}),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  getButton("Ayarları Sıfırla", (onpress){
+                    controllerkalca_maks.countskalca_maks == 0;
+                    controllerkalca_min.countskalca_min == 0;
+                    controllerdestek1.countsdestek1 == 0;
+                    controllerdestek2.countsdestek2 == 0;
+                    controllerdiz_max.countsdiz_maks == 0;
+                    controllerdiz_min.countsdiz_min == 0;
+                  }),
                 ],
               ),
-
-
-              getButton("Aynı Ayarları \n Diğer Bacağa Uygula",(){}),
-
-
+              getButton("Aynı Ayarları \n Diğer Bacağa Uygula", () {}),
             ],
           ),
         ),
@@ -133,7 +235,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
     );
   }
 
-  Widget getButton(String title, Function onpress){
+  Widget getButton(String title, Function onpress) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
@@ -143,7 +245,8 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
             alignment: Alignment.center,
             width: 100,
             height: 30,
-            child: Text(title,  textAlign: TextAlign.center,
+            child: Text(title,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.teal,
                     fontSize: 14,
@@ -157,29 +260,28 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25))),
         ),
-        onPressed: () {
-        },
+        onPressed : ()=> onpress,
       ),
     );
   }
-
 }
 
-
 class Steppers extends StatefulWidget {
-
   getController controller = Get.put(getController());
   double scale;
 
   final VoidCallback onCustomPlusPressed;
   final VoidCallback onCustomMinusPressed;
   String text;
-  Steppers({this.scale=1.5,required this.controller,required this.onCustomPlusPressed,required this.onCustomMinusPressed,required this.text});
+  Steppers(
+      {this.scale = 1.5,
+      required this.controller,
+      required this.onCustomPlusPressed,
+      required this.onCustomMinusPressed,
+      required this.text});
 
   @override
   State<Steppers> createState() => _SteppersState();
-
-
 }
 
 class _SteppersState extends State<Steppers> {
@@ -192,23 +294,29 @@ class _SteppersState extends State<Steppers> {
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        GestureDetector(child: Image.asset("assets/images/triangle.png",scale: widget.scale,color: Colors.teal), onTap:widget.onCustomPlusPressed),
+        GestureDetector(
+            child: Image.asset("assets/images/triangle.png",
+                scale: widget.scale, color: Colors.teal),
+            onTap: widget.onCustomPlusPressed),
         ShowUpAnimation(
-          delayStart: Duration(seconds: 1),
-          animationDuration: Duration(seconds: 1),
-          curve: Curves.bounceIn,
-          direction: Direction.vertical,
-          offset: 0.5,
-          child:
-          Text(widget.text,style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),)
-          ),
+            delayStart: Duration(seconds: 1),
+            animationDuration: Duration(seconds: 1),
+            curve: Curves.bounceIn,
+            direction: Direction.vertical,
+            offset: 0.5,
+            child: Text(
+              widget.text,
+              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+            )),
         GestureDetector(
             child: RotatedBox(
                 quarterTurns: 2,
-                child:  Image.asset("assets/images/triangle.png",scale: widget.scale,color: Colors.teal,)
-            ),
-            onTap:widget.onCustomMinusPressed),
-
+                child: Image.asset(
+                  "assets/images/triangle.png",
+                  scale: widget.scale,
+                  color: Colors.teal,
+                )),
+            onTap: widget.onCustomMinusPressed),
       ],
     );
   }
