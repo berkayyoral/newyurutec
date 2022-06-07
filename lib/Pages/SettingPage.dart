@@ -15,6 +15,7 @@ class AyarlamaSayfasi extends StatefulWidget {
 }
 
 class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
+
   getController controllerkalca_maks = Get.put(getController());
   getController controllerkalca_min = Get.put(getController());
   getController controllerdiz_max = Get.put(getController());
@@ -202,40 +203,55 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  getButton("Kaydet", () {}),
+                  getButtons(title: "Kaydet", onpress: () {}),
                   SizedBox(
                     width: 20,
                   ),
-                  getButton("Sağ Bacak", () {}),
+                  getButtons(title: "Sağ Bacak", onpress: () {}),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  getButton("Sol Bacak", () {}),
+                  getButtons(title: "Sol Bacak", onpress: () {}),
                   SizedBox(
                     width: 20,
                   ),
-                  getButton("Ayarları Sıfırla", (onpress){
-                    controllerkalca_maks.countskalca_maks == 0;
-                    controllerkalca_min.countskalca_min == 0;
-                    controllerdestek1.countsdestek1 == 0;
-                    controllerdestek2.countsdestek2 == 0;
-                    controllerdiz_max.countsdiz_maks == 0;
-                    controllerdiz_min.countsdiz_min == 0;
+                  getButtons(title: "Ayarları Sıfırla", onpress: () {
+                    print('a');
+                    setState(() {
+                      controllerkalca_maks.kalca_maks.value = 0;
+                      controllerkalca_min.kalca_min.value = 0;
+                      controllerdestek1.destek1.value = 0;
+                      controllerdestek2.destek2.value = 0;
+                      controllerdiz_max.diz_max.value = 0;
+                      controllerdiz_min.diz_min.value = 0;
+                    });
                   }),
                 ],
               ),
-              getButton("Aynı Ayarları \n Diğer Bacağa Uygula", () {}),
+              getButtons(title: "Aynı Ayarları \n Diğer Bacağa Uygula", onpress: () {}),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget getButton(String title, Function onpress) {
+class getButtons extends StatelessWidget {
+   getButtons({
+    Key? key,
+    required this.title,
+    required this.onpress,
+  }) : super(key: key);
+
+  final String title;
+   final VoidCallback onpress;
+
+   @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextButton(
@@ -260,7 +276,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25))),
         ),
-        onPressed : ()=> onpress,
+        onPressed: onpress,
       ),
     );
   }

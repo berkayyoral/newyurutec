@@ -82,7 +82,6 @@ class _ChartsPageState extends State<ChartsPage> {
                   children: [
                     Text("Tarih - Süre", style: TextStyle(fontSize: 20, color: Colors.teal),),
                     getButton("Yazdır - PDF Olarak Kaydet", () {
-
                     }
                     )
                   ],

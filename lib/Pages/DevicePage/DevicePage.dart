@@ -20,6 +20,8 @@ class _DeviceScreenState extends State<DeviceScreen> {
   var a = 0;
 
   List denemeRead = [];
+  
+  List sample = ['a','b',2,3];
 
   var crc = 0;
 
@@ -143,16 +145,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            //örnek data yollama textfield ile
-            /*TextField(
-              controller: _val,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              onSubmitted: (kl) {
-                kl = _val.text;
-                print('${_writeFrame().toList()}');
-              },
-            ),*/
             StreamBuilder<BluetoothDeviceState>(
               stream: widget.device.state,
               initialData: BluetoothDeviceState.connecting,
@@ -212,7 +204,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                 icon: Icon(Icons.upload)),
             IconButton(
                 onPressed: () {
-                  setState(() {
+                  setState((){
                     read1();
                   });
                 },
