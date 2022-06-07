@@ -9,7 +9,6 @@ class AuthService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 
-  //giriş yap ellemeyin
   Future<User?> signIn(String email, String password) async {
     var user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
@@ -17,7 +16,6 @@ class AuthService {
   }
 
 
-  //kayıt ol ellemeyin
   Future<User?> createPerson(String email, String name, String password) async {
     try {
       var user = await _auth.createUserWithEmailAndPassword(
@@ -33,7 +31,6 @@ class AuthService {
     }
   }
 
-  // Verileri güncelleme
   Future<void> personUpdate(
       String guncelname,
       String guncelemail,
