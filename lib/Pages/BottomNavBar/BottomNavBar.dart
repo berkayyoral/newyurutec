@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:yurutecrobot/Pages/ChartsPage.dart';
 import 'package:yurutecrobot/Pages/HomePage/HomePage.dart';
 
+import '../../Constants/Constants.dart';
 import '../AntrenmanPage.dart';
 import '../SettingPage.dart';
 
@@ -105,15 +106,13 @@ class _BottomNavBarState extends State<BottomNavBar>
               ],
             );
           },
-          backgroundColor: HexColor('#373A36'),
+          backgroundColor: kBlue,
           activeIndex: _bottomNavIndex,
           splashColor: HexColor('#FFA400'),
           notchAndCornersAnimation: animation,
           splashSpeedInMilliseconds: 300,
           notchSmoothness: NotchSmoothness.defaultEdge,
           gapLocation: GapLocation.none,
-          leftCornerRadius: 32,
-          rightCornerRadius: 32,
           onTap: (index) => setState(() => _bottomNavIndex = index),
         ),
       ),

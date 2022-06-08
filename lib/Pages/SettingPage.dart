@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:show_up_animation/show_up_animation.dart';
+import 'package:yurutecrobot/Constants/Constants.dart';
 import 'package:yurutecrobot/Controller/getController.dart';
+import 'package:yurutecrobot/Pages/yeniKay%C4%B1tPage.dart';
 
 import '../Export.dart';
 
@@ -34,13 +36,10 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhite,
       appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {},
-          ),
-          title: Text("QTR TECH"),
+          toolbarHeight: 80,
+          title: Text("QTR TECHNOLOGY"),
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -57,22 +56,61 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
               ),
             )
           ],
-          backgroundColor: Colors.teal),
+          backgroundColor: kBlue),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Açı Ayarlama",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                    color: Colors.teal),
-              ),
+              SizedBox(height: Get.height*0.02,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                MaterialButton(
+                  minWidth: Get.width * 0.55,
+                  height: Get.height * 0.075,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignupPage()));
+                  },
+                  color: kWhite,
+                  textColor: kBlue,
+                  child: Text(
+                    'HASTA SEÇİNİZ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                MaterialButton(
+                  minWidth: Get.width * 0.35,
+                  height: Get.height * 0.075,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => yeniKayitPage()));
+                  },
+                  color: kBlue,
+                  textColor: kWhite,
+                  child: Text(
+                    'YENİ KAYIT',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],),
               SizedBox(
                 height: 20,
               ),
@@ -199,6 +237,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                   ],
                 ),
               ),
+              Divider(endIndent: 30,indent: 30,color: kBlue,height: 5,thickness: 2,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -264,15 +303,13 @@ class getButtons extends StatelessWidget {
             child: Text(title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Colors.teal,
+                    color: kBlue,
                     fontSize: 14,
                     fontWeight: FontWeight.w500)),
           ),
         ),
         style: TextButton.styleFrom(
-          primary: Colors.teal,
-          onSurface: Colors.yellow,
-          side: BorderSide(color: Colors.teal, width: 2),
+          side: BorderSide(color: kBlue, width: 2),
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(25))),
         ),
@@ -312,7 +349,7 @@ class _SteppersState extends State<Steppers> {
       children: [
         GestureDetector(
             child: Image.asset("assets/images/triangle.png",
-                scale: widget.scale, color: Colors.teal),
+                scale: widget.scale, color: kGreen),
             onTap: widget.onCustomPlusPressed),
         ShowUpAnimation(
             delayStart: Duration(seconds: 1),
@@ -322,7 +359,7 @@ class _SteppersState extends State<Steppers> {
             offset: 0.5,
             child: Text(
               widget.text,
-              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.bold),
+              style: TextStyle(color: kBlue, fontWeight: FontWeight.bold),
             )),
         GestureDetector(
             child: RotatedBox(
@@ -330,7 +367,7 @@ class _SteppersState extends State<Steppers> {
                 child: Image.asset(
                   "assets/images/triangle.png",
                   scale: widget.scale,
-                  color: Colors.teal,
+                  color: kRed,
                 )),
             onTap: widget.onCustomMinusPressed),
       ],

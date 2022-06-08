@@ -36,6 +36,7 @@ dependencies:
   path_provider: ^2.0.2
   syncfusion_flutter_pdf: ^19.2.62-beta
   flutter_blue: ^0.8.0
+  flutter_native_splash: ^2.2.0
   get: ^4.6.5
   firebase_storage: ^10.2.16
   firebase_core: ^1.17.0
@@ -58,6 +59,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - assets/images/
 
   # To add assets to your application, add an assets section, like this:

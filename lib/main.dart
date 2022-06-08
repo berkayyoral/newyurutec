@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:yurutecrobot/Export.dart';
+import 'package:yurutecrobot/Pages/OnBoardPage/OnBoardPage.dart';
 
 import 'firebase_options.dart';
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: OnBoard(),
     );
   }
 }

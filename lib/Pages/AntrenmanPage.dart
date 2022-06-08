@@ -1,5 +1,6 @@
 import 'package:yurutecrobot/Controller/getController.dart';
 import 'package:get/get.dart';
+import '../Constants/Constants.dart';
 import '../Export.dart';
 
 class AntrenmanPage extends StatefulWidget {
@@ -15,13 +16,10 @@ class _AntrenmanPageState extends State<AntrenmanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhite,
       appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {},
-          ),
-          title: Text("QTR TECH"),
+          toolbarHeight: 80,
+          title: Text("QTR TECHNOLOGY"),
           actions: [
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
@@ -38,198 +36,222 @@ class _AntrenmanPageState extends State<AntrenmanPage> {
               ),
             )
           ],
-          backgroundColor: Colors.teal),
+          backgroundColor: kBlue),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.teal,
-                              radius: 50,
-                              child: Text(
-                                'Resim',
-                                style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
-                              ), //Text
-                            ),
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Text('Kullanıcı Adı'),
-                        ],
-                      ),
-                      Text(' Talimatlar\n-\n-\n-'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blue)),
-                        child: const Center(
-                            child: Text(
-                          '0:00:00',
-                          style: TextStyle(color: Colors.red),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            CircleAvatar(
+              radius: 52,
+              backgroundColor: kBlue,
+              child: CircleAvatar(
+                  backgroundColor: kWhite,
+                  radius: 50,
+                  child: Image.asset('assets/images/kid.png')),
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            Text(
+              'Ali Yılmaz',
+              style: TextStyle(color: kBlue, fontSize: 22),
+            ),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            Divider(
+              endIndent: 30,
+              indent: 30,
+              color: kBlue,
+              height: 5,
+              thickness: 2,
+            ),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.timer_outlined,
+                      color: kBlue,
+                      size: 58,
+                    ),
+                    Text(
+                      'SÜRE',
+                      style: TextStyle(color: kBlue, fontSize: 18),
+                    ),
+                    Text(
+                      '01:56',
+                      style: TextStyle(color: kBlue, fontSize: 25),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(Icons.directions_run, color: kBlue, size: 58),
+                    Text(
+                      'ADIM',
+                      style: TextStyle(color: kBlue, fontSize: 18),
+                    ),
+                    Text(
+                      '50',
+                      style: TextStyle(color: kBlue, fontSize: 25),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.do_disturb_on_outlined,
+                          color: kRed,
+                          size: 52,
                         )),
+                    Text(
+                      'Azalt',
+                      style: TextStyle(color: kRed),
+                    )
+                  ],
+                ),
+                Icon(
+                  Icons.speed,
+                  color: kBlue,
+                  size: 44,
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.control_point_outlined,
+                      color: kGreen,
+                    ))
+              ],
+            ),
+            Divider(
+              endIndent: 30,
+              indent: 30,
+              color: kBlue,
+              height: 5,
+              thickness: 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.settings,
+                        size: 40,
+                        color: Colors.teal,
                       ),
-                      const SizedBox(
-                        child: Text('Zaman'),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.blue)),
-                        child: const Center(
-                            child: Text(
-                          '00000',
-                          style: TextStyle(color: Colors.red),
-                        )),
-                      ),
-                      const SizedBox(
-                        child: Text('Adım Sayısı'),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      IconButton(
+                    ),
+                    const Text(
+                      'Ayarlama\n Sayfası\nKısayolu',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon:
+                          const Icon(Icons.save, size: 40, color: Colors.teal),
+                    ),
+                    const Text(
+                      'Antrenmanı\n Kaydet',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.restart_alt,
+                          size: 40, color: Colors.teal),
+                    ),
+                    const Text(
+                      'Sıfırlama\n Komutu',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                    IconButton(
                         onPressed: () {},
-                        icon: const Icon(
-                          Icons.settings,
-                          size: 40,
-                          color: Colors.teal,
-                        ),
-                      ),
-                      const Text(
-                        'Ayarlama\n Sayfası\nKısayolu',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.save,
-                            size: 40, color: Colors.teal),
-                      ),
-                      const Text(
-                        'Antrenmanı\n Kaydet',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.restart_alt,
-                            size: 40, color: Colors.teal),
-                      ),
-                      const Text(
-                        'Sıfırlama\n Komutu',
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    children: [
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.block_flipped,
-                              size: 40, color: Colors.teal)),
-                      Text(
-                        'Durdur-Başlat',
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            if(controllerhiz.countshiz > 0){
-                              setState(() {
-                                controllerhiz.decrementhiz();
-                                print(controllerhiz.countshiz);
-                              });
-                            }
-                          },
-                          icon: Icon(Icons.do_disturb_on_outlined,
-                              size: 40, color: Colors.teal)),
-                      Text(
-                        'Hız Azaltma',
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      IconButton(
-                          onPressed: () {
+                        icon: Icon(Icons.block_flipped,
+                            size: 40, color: Colors.teal)),
+                    Text(
+                      'Durdur-Başlat',
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          if (controllerhiz.countshiz > 0) {
                             setState(() {
-                              controllerhiz.incrementhiz();
+                              controllerhiz.decrementhiz();
                               print(controllerhiz.countshiz);
                             });
-                          },
-                          icon: Icon(Icons.control_point_outlined,
-                              size: 40, color: Colors.teal)),
-                      Text(
-                        'Hız Artırma',
-                        textAlign: TextAlign.center,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ],
-          ),
+                          }
+                        },
+                        icon: Icon(Icons.do_disturb_on_outlined,
+                            size: 40, color: Colors.teal)),
+                    Text(
+                      'Hız Azaltma',
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          setState(() {
+                            controllerhiz.incrementhiz();
+                            print(controllerhiz.countshiz);
+                          });
+                        },
+                        icon: Icon(Icons.control_point_outlined,
+                            size: 40, color: Colors.teal)),
+                    Text(
+                      'Hız Artırma',
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
