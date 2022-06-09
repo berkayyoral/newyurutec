@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 import 'package:yurutecrobot/Utilities/save_pdf.dart';
@@ -7,6 +8,9 @@ import 'dart:async';
 
 import '../Constants/Constants.dart';
 import '../Export.dart';
+import '../Widgets/tarihFormField.dart';
+import 'data.dart';
+import 'model.dart';
 
 class ChartsPage extends StatefulWidget {
   @override
@@ -18,10 +22,12 @@ class _ChartsPageState extends State<ChartsPage> {
 
   late GlobalKey<SfCartesianChartState> _cartesianChartKey;
 
+  late List<User> users;
   @override
   void initState() {
     _cartesianChartKey = GlobalKey();
     super.initState();
+    this.users = List.of(allUsers);
   }
 
   @override
@@ -47,12 +53,83 @@ class _ChartsPageState extends State<ChartsPage> {
             )
           ],
           backgroundColor: kBlue),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
-            Divider(endIndent: 30,indent: 30,color: kBlue,height: 5,thickness: 2,),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            MaterialButton(
+              minWidth: Get.width * 0.8,
+              height: Get.height * 0.075,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  side: BorderSide(color: kBlue, width: 2)),
+              onPressed: () {},
+              color: kWhite,
+              textColor: kBlue,
+              child: Text(
+                'Ali Yılmaz',
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  'Başlangıç',
+                  style: TextStyle(color: kBlue),
+                ),
+                Text(
+                  'Bitiş',
+                  style: TextStyle(color: kBlue),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                tarihFormField(),
+                tarihFormField(),
+                MaterialButton(
+                  minWidth: Get.width * 0.1,
+                  height: Get.height * 0.075,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  onPressed: () {},
+                  color: kBlue,
+                  textColor: kWhite,
+                  child: Text(
+                    'Listele',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: Get.height * 0.02,
+            ),
+            Divider(
+              endIndent: 30,
+              indent: 30,
+              color: kBlue,
+              height: 5,
+              thickness: 2,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -116,7 +193,6 @@ class _ChartsPageState extends State<ChartsPage> {
                 primaryXAxis: CategoryAxis(),
                 series: <LineSeries<SalesData, String>>[
                   LineSeries<SalesData, String>(
-
                       color: kBlue,
                       // Bind data source
                       dataSource: <SalesData>[
@@ -131,8 +207,20 @@ class _ChartsPageState extends State<ChartsPage> {
                 ],
               ),
             ),
-            Divider(endIndent: 30,indent: 30,color: kBlue,height: 5,thickness: 2,),
-            Text('GEÇMİŞ ANTRENMANLAR',style: TextStyle(color: kBlue),)
+            Divider(
+              endIndent: 30,
+              indent: 30,
+              color: kBlue,
+              height: 5,
+              thickness: 2,
+            ),
+            SizedBox(height: Get.height * 0.02),
+            Text(
+              'GEÇMİŞ ANTRENMANLAR',
+              style: TextStyle(color: kBlue, fontSize: 18),
+            ),
+            SizedBox(height: Get.height * 0.02),
+            buildDataTable(),
           ],
         ),
       ),
@@ -140,6 +228,26 @@ class _ChartsPageState extends State<ChartsPage> {
     );
   }
 
+  Widget buildDataTable() {
+    final columns = ['Tarih', 'Süre', 'Adım'];
+    return DataTable(
+        columns: getColumns(columns),
+        rows: getRows(users));
+
+  }
+
+  List<DataColumn> getColumns(List<String> columns) => columns
+      .map((String column) => DataColumn(
+            label: Text(column,style: TextStyle(color: kBlue),),
+          ))
+      .toList();
+
+  List<DataRow> getRows(List<User> users) => users.map((User user) {
+        final cells = [user.name, user.lastName, user.sex];
+        return DataRow(cells: getCells(cells));
+      }).toList();
+  List<DataCell> getCells(List<dynamic> cells) =>
+      cells.map((data) => DataCell(Text('$data',style: TextStyle(color: kBlue),))).toList();
   Widget getButton(String title, Function onpress) {
     return Padding(
       padding: const EdgeInsets.all(8.0),

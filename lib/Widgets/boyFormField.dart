@@ -3,22 +3,22 @@ import 'package:yurutecrobot/Constants/Constants.dart';
 
 import '../export.dart';
 
-class nameFormField extends StatelessWidget {
-  const nameFormField({
+class boyFormField extends StatelessWidget {
+  const boyFormField({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width*0.7,
+      width: Get.width*0.4,
       child: TextFormField(
         style: TextStyle(color: kBlue),
-        keyboardType: TextInputType.name,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          hintText: 'İsim',hintStyle: TextStyle(color: kBlue),
+          hintText: 'Boy',hintStyle: TextStyle(color: kBlue),
           prefixIcon: Icon(
-            Icons.person_outline,
+            Icons.rule,
             color: kBlue,
           ),
           focusedBorder: OutlineInputBorder(
@@ -30,7 +30,7 @@ class nameFormField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: kBlue,width: 2),
             borderRadius: BorderRadius.all(
-              Radius.circular(25),
+              Radius.circular(32),
             ),
           ),
         ),

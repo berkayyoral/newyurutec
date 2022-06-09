@@ -13,6 +13,7 @@ class surnameFormField extends StatelessWidget {
     return Container(
       width: Get.width*0.7,
       child: TextFormField(
+        style: TextStyle(color: kBlue),
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
           hintText: 'Soyisim',hintStyle: TextStyle(color: kBlue),

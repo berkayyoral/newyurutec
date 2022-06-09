@@ -1,8 +1,8 @@
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
+import 'package:yurutecrobot/Constants/Constants.dart';
 import 'package:yurutecrobot/Controller/getController.dart';
-import 'package:yurutecrobot/Pages/AntrenmanPage.dart';
-import 'package:yurutecrobot/Pages/SettingPage.dart';
+
 
 import '../../Export.dart';
 
@@ -58,6 +58,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
     ];
   }
 
+
   void write1() async {
     List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
@@ -105,9 +106,8 @@ class _DeviceScreenState extends State<DeviceScreen> {
     read1();
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text("QTR TECH"),
-        backgroundColor: Colors.teal,
+        backgroundColor: kBlue,
         actions: <Widget>[
           StreamBuilder<BluetoothDeviceState>(
             stream: widget.device.state,
@@ -205,11 +205,12 @@ class _DeviceScreenState extends State<DeviceScreen> {
             IconButton(
                 onPressed: () {
                   setState((){
-                    read1();
+                    denemeRead;
                   });
+                  read1();
                 },
                 icon: Icon(Icons.download)),
-            Text(denemeRead == null ? 'olmadı' : denemeRead.toString()
+            Text(denemeRead == null ? 'hata' : denemeRead.toString()
             ),
           ],
         ),

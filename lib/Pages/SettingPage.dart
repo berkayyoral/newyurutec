@@ -72,12 +72,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignupPage()));
-                  },
+                  onPressed: () {},
                   color: kWhite,
                   textColor: kBlue,
                   child: Text(
@@ -119,7 +114,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                 children: [
                   Column(
                     children: [
-                      Text("Kalça Maksimum"),
+                      Text("Kalça Maksimum",style: TextStyle(color: kBlue),),
                       Obx(
                         () => Steppers(
                           controller: kalca_maks,
@@ -136,7 +131,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text("Diz Maksimum"),
+                      Text("Diz Maksimum",style: TextStyle(color: kBlue)),
                       Obx(
                         () => Steppers(
                           controller: diz_maks,
@@ -158,7 +153,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                   ),
                   Column(
                     children: [
-                      Text("Kalça Minimum"),
+                      Text("Kalça Minimum",style: TextStyle(color: kBlue)),
                       Obx(
                         () => Steppers(
                           controller: kalca_min,
@@ -174,7 +169,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                       SizedBox(
                         height: 20,
                       ),
-                      Text("Diz Minimum"),
+                      Text("Diz Minimum",style: TextStyle(color: kBlue)),
                       Obx(
                         () => Steppers(
                           controller: diz_min,
@@ -199,7 +194,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Destek Kuvveti"),
+                        Text("Destek Kuvveti",style: TextStyle(color: kBlue)),
                         Obx(
                           () => Steppers(
                             controller: destek1,
@@ -218,7 +213,7 @@ class _AyarlamaSayfasiState extends State<AyarlamaSayfasi> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Destek Kuvveti"),
+                        Text("Destek Kuvveti",style: TextStyle(color: kBlue)),
                         Obx(
                           () => Steppers(
                             controller: destek2,

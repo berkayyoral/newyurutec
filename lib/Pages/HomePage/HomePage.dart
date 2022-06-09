@@ -61,80 +61,77 @@ class _HomePageState extends State<HomePage> {
                         initialData: [],
                         builder: (c, snapshot) => Column(
                           children: snapshot.data!
-                              .map((d) => Card(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Column(
-                                          children: [
-                                            Text('Bağlı Cihaz',
-                                                style: TextStyle(fontSize: 18)),
-                                            Text(d.name),
-                                          ],
-                                        ),
-                                        StreamBuilder<BluetoothDeviceState>(
-                                          stream: d.state,
-                                          initialData:
-                                              BluetoothDeviceState.disconnected,
-                                          builder: (c, snapshot) {
-                                            if (snapshot.data ==
-                                                BluetoothDeviceState
-                                                    .connected) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: TextButton(
-                                                  style: TextButton.styleFrom(
-                                                    primary: Colors.teal,
-                                                    onSurface: Colors.yellow,
-                                                    side: BorderSide(
-                                                        color: Colors.teal,
-                                                        width: 2),
-                                                    shape: const RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                                Radius.circular(
-                                                                    25))),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10.0,
-                                                            right: 10.0),
-                                                    child: Container(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      width: 100,
-                                                      height: 30,
-                                                      child: Text('Aç',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.teal,
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500)),
+                              .map((d) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0,horizontal: 10),
+                                child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: BorderSide(color: kBlue, width: 2),
+                            ),
+                            color: kWhite,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Text('Bağlı Cihaz',
+                                                  style: TextStyle(fontSize: 18,color: kBlue)),
+                                              Text(d.name,style: TextStyle(color: kBlue),),
+                                            ],
+                                          ),
+                                          StreamBuilder<BluetoothDeviceState>(
+                                            stream: d.state,
+                                            initialData:
+                                                BluetoothDeviceState.disconnected,
+                                            builder: (c, snapshot) {
+                                              if (snapshot.data ==
+                                                  BluetoothDeviceState
+                                                      .connected) {
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: TextButton(
+
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10.0,
+                                                              right: 10.0),
+                                                      child: Container(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        width: 100,
+                                                        height: 30,
+                                                        child: Text('Aç',
+                                                            textAlign:
+                                                                TextAlign.center,
+                                                            style: TextStyle(
+                                                                color:
+                                                                    kBlue,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500)),
+                                                      ),
                                                     ),
+                                                    onPressed: () => Navigator.of(
+                                                            context)
+                                                        .push(MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                DeviceScreen(
+                                                                    device: d))),
                                                   ),
-                                                  onPressed: () => Navigator.of(
-                                                          context)
-                                                      .push(MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              DeviceScreen(
-                                                                  device: d))),
-                                                ),
-                                              );
-                                            }
-                                            return Text(
-                                                snapshot.data.toString());
-                                          },
-                                        ),
-                                      ],
+                                                );
+                                              }
+                                              return Text(
+                                                  snapshot.data.toString());
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ))
+                              ))
                               .toList(),
                         ),
                       ),

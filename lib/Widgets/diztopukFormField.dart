@@ -3,8 +3,8 @@ import 'package:yurutecrobot/Constants/Constants.dart';
 
 import '../export.dart';
 
-class nameFormField extends StatelessWidget {
-  const nameFormField({
+class diztopukFormField extends StatelessWidget {
+  const diztopukFormField({
     Key? key,
   }) : super(key: key);
 
@@ -14,11 +14,11 @@ class nameFormField extends StatelessWidget {
       width: Get.width*0.7,
       child: TextFormField(
         style: TextStyle(color: kBlue),
-        keyboardType: TextInputType.name,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
-          hintText: 'İsim',hintStyle: TextStyle(color: kBlue),
+          hintText: 'Diz-Topuk Arası Uzunluk',hintStyle: TextStyle(color: kBlue),
           prefixIcon: Icon(
-            Icons.person_outline,
+            Icons.horizontal_rule_rounded,
             color: kBlue,
           ),
           focusedBorder: OutlineInputBorder(
