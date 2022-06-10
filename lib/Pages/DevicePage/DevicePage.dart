@@ -58,15 +58,28 @@ class _DeviceScreenState extends State<DeviceScreen> {
     ];
   }
 
+  void notify() async {
+    List<BluetoothService> services = await widget.device.discoverServices();
+    services.forEach((service) {
+      service.characteristics.forEach((character) async{
+        if (character.uuid.toString() ==
+            '00006e41-0000-1000-8000-00805f9b34fb') {
+           await character.setNotifyValue(!character.isNotifying);
+           await character.read();
+          print('abc');
+        }
+      });
+    });
+  }
 
   void write1() async {
     List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
-      service.characteristics.forEach((character) {
+      service.characteristics.forEach((character) async{
         if (character.uuid.toString() ==
             '00006e41-0000-1000-8000-00805f9b34fb') {
           //buraya bi bekleme koymalıyız sayfa açılır açılmaz yollanıyor (ya da bekletmeyiz sayfaya girdiği gibi yollar),
-          character.write(frame1());
+          await character.write(frame1());
         }
       });
     });
@@ -75,11 +88,11 @@ class _DeviceScreenState extends State<DeviceScreen> {
   void write2() async {
     List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
-      service.characteristics.forEach((character) {
+      service.characteristics.forEach((character) async{
         if (character.uuid.toString() ==
             '00006e41-0000-1000-8000-00805f9b34fb') {
           //buraya bi bekleme koymalıyız sayfa açılır açılmaz yollanıyor (ya da bekletmeyiz sayfaya girdiği gibi yollar),
-          character.write(frame2());
+          await character.write(frame2());
         }
       });
     });
@@ -88,10 +101,10 @@ class _DeviceScreenState extends State<DeviceScreen> {
    void read1() async {
     List<BluetoothService> services = await widget.device.discoverServices();
     services.forEach((service) {
-      service.characteristics.forEach((character) {
+      service.characteristics.forEach((character) async {
         if (character.uuid.toString() ==
             '00006e41-0000-1000-8000-00805f9b34fb') {
-          character.read().then((value) {
+         await character.read().then((value) {
             print('value is $value');
             denemeRead = value;
           });
@@ -185,31 +198,41 @@ class _DeviceScreenState extends State<DeviceScreen> {
                 children: [_serviceAlma(snapshot.data!)],
               );
             }),*/
-            IconButton(
-                onPressed: () {
-                  if (a == 0) {
-                    write1();
-                    setState(() {
-                      a += 1;
-                    });
-                    print(a);
-                  } else {
-                    write2();
-                    setState(() {
-                      a = 0;
-                      print(a);
-                    });
-                  }
-                },
-                icon: Icon(Icons.upload)),
-            IconButton(
-                onPressed: () {
-                  setState((){
-                    denemeRead;
-                  });
-                  read1();
-                },
-                icon: Icon(Icons.download)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      if (a == 0) {
+                        write1();
+                        setState(() {
+                          a += 1;
+                        });
+                        print(a);
+                      } else {
+                        write2();
+                        setState(() {
+                          a = 0;
+                          print(a);
+                        });
+                      }
+                    },
+                    icon: Icon(Icons.upload)),
+                IconButton(
+                    onPressed: () {
+                      setState((){
+                        denemeRead;
+                      });
+                      read1();
+                    },
+                    icon: Icon(Icons.download)),
+                IconButton(
+                    onPressed: () {
+                      notify();
+                    },
+                    icon: Icon(Icons.refresh)),
+              ],
+            ),
             Text(denemeRead == null ? 'hata' : denemeRead.toString()
             ),
           ],
